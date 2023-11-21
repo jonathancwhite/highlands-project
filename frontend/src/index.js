@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import store from "./store.js";
 import { Provider } from "react-redux";
-import App from "./App.jsx";
+import App from "./App.js";
 
 const router = createBrowserRouter(
     createRoutesFromElements(

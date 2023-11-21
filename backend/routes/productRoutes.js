@@ -6,7 +6,7 @@ import {
     getAllProducts,
 } from "../controllers/productController";
 
-router.post("/", createProduct);
+router.post("/products", createProduct);
 router.get("/products", getAllProducts);
 
 router.get("/hello", (req, res) => {

@@ -1,9 +1,18 @@
-function App() {
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./assets/scss/main.scss";
+import GeneralLayout from "./layouts/GeneralLayout.jsx";
+
+const App = () => {
     return (
-        <div className="App">
-            <h2>YO</h2>
-        </div>
+        <>
+            <ToastContainer />
+            <GeneralLayout>
+                <h2>Yo</h2>
+            </GeneralLayout>
+        </>
     );
-}
+};
 
 export default App;

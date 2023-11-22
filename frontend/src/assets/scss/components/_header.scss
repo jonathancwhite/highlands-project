@@ -12,6 +12,7 @@
     &__branding {
         width: 70%;
         font-weight: 700;
+        cursor: pointer;
     }
     &__navigation {
         width: 30%;
@@ -19,6 +20,9 @@
             display: flex;
             justify-content: space-around;
             list-style: none;
+            li {
+                cursor: pointer;
+            }
         }
     }
 }

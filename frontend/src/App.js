@@ -1,22 +1,13 @@
 import { ToastContainer } from "react-toastify";
+import { Outlet } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/scss/main.scss";
-import GeneralLayout from "./layouts/GeneralLayout.jsx";
-import Form from "./components/Form.jsx";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const App = () => {
+const App = ({ children }) => {
     return (
         <>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <ToastContainer />
-                <GeneralLayout>
-                    <div className="container">
-                        <Form />
-                    </div>
-                </GeneralLayout>
-            </LocalizationProvider>
+            <ToastContainer />
+            <Outlet />
         </>
     );
 };

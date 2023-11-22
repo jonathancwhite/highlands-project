@@ -1,16 +1,23 @@
 import React from "react";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
     return (
         <div className="header">
             <div className="header__container">
                 <div className="header__branding">
-                    <h2>Inventory Project</h2>
+                    <LinkContainer to={"/"}>
+                        <span>Inventory Project</span>
+                    </LinkContainer>
                 </div>
                 <div className="header__navigation">
                     <ul>
-                        <li>Create Product</li>
-                        <li>Products</li>
+                        <LinkContainer to={"/"}>
+                            <li>Create Product</li>
+                        </LinkContainer>
+                        <LinkContainer to={"/products"}>
+                            <li>Products</li>
+                        </LinkContainer>
                     </ul>
                 </div>
             </div>

@@ -81,24 +81,6 @@ export default function Form() {
 
     const [createProduct] = useCreateProductMutation();
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        let date = dayjs(availableOn).format("MM-DD-YYYY");
-
-        try {
-            await createProduct({
-                name: productName,
-                upc: productUPC,
-                available_on: date,
-                properties,
-            }).unwrap();
-            // Handle successful submission
-        } catch (err) {
-            console.error(err);
-            toast.error(err?.data?.message || err.error);
-        }
-    };
-
     const handleAddProperty = () => {
         setProperties([...properties, { name: "", value: "" }]);
     };
@@ -116,6 +98,35 @@ export default function Form() {
     const handleRemoveProperty = (index) => {
         const updatedProperties = properties.filter((_, i) => i !== index);
         setProperties(updatedProperties);
+    };
+
+    const clearForm = () => {
+        setProductName("");
+        setProductUPC("");
+        setAvailableOn(dayjs(formattedDate));
+        setIsValid(false);
+        setProperties([]);
+        setUpcError("");
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        let date = dayjs(availableOn).format("MM-DD-YYYY");
+
+        try {
+            await createProduct({
+                name: productName,
+                upc: productUPC,
+                available_on: date,
+                properties,
+            }).unwrap();
+            // need to clear form and navigate to /products
+            clearForm();
+            navigate("/products");
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.data?.message || err.error);
+        }
     };
 
     return (

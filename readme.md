@@ -22,10 +22,12 @@ Below are the instructions to setup this project from downloading the repo to co
 -   We will now install dependencies for the entire project
     ```
     cd backend
+    npm i
     ```
 -   pnpm i / npm i (use npm if you do not have pnpm installed)
     ```
     cd frontend
+    npm i
     ```
 -   pnpm i / npm i (use npm if you do not have pnpm installed)
 -   All dependencies are now installed and we can move onto connecting to the database
@@ -35,3 +37,22 @@ Below are the instructions to setup this project from downloading the repo to co
 -   Create a new env file inside of backend
 -   Copy .env.sample over to your new .env file
 -   Now we will run server.js to make sure our backend can connect to the database
+    ```
+    cd ..
+    npm run server
+    ```
+-   You will see a confirmation of the server starting in your terminal
+-   Once confirmed that your server is running, we can go ahead and start the entire application.
+
+### Application
+
+We will run our application in development mode since it is not deployed.
+
+-   NPM instructions:
+    ```
+    npm run backup-dev
+    ```
+-   PNPM instructions:
+    ```
+    pnpm run dev
+    ```

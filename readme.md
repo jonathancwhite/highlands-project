@@ -6,7 +6,9 @@ Product management project to handle creation of products and properties that ar
 
 ## Production Changes
 
-If I were to build this product management application for a real-world solution, there would be some changes that I would make to better serve a client. First, the obvious would be authentication. I love utilizing JWT in these situations as it's a simple and effective method of authenticating and verifying user credentials without the hassle of setting up a ton of different checks throughout the application. The next big change that I would make is that I would flesh out the product endpoints to allow for edits, deletions, and hidden products. The last large change that I would make is a custom frontend rather than using material UI for everything. Material UI is extremely quick and developer friendly, but doesn't offer the robust nature of custom scss and elements.
+If I were to build this product management application for a real-world solution, there would be some changes that I would make to better serve a client. First, the obvious would be authentication. I love utilizing JWT in these situations as it's a simple and effective method of authenticating and verifying user credentials without the hassle of setting up a ton of different checks throughout the application. I would also swap the components over from utilizing two separate pages and would have one single Dashboard component and would swap the children rather than swapping the entire parent component.
+
+The next big change that I would make is that I would flesh out the product endpoints to allow for edits, deletions, and hidden products. The last large change that I would make is a custom frontend rather than using material UI for everything. Material UI is extremely quick and developer friendly, but doesn't offer the robust nature of custom scss and elements.
 
 One final consideration I would make before pushing this project to a production level setting would be to include automated testing via Jest or some other testing software, which would verify before deployment. This would be a part of a larger CI/CD pipeline.
 

@@ -41,7 +41,19 @@ const ViewProducts = () => {
     const filteredProducts =
         searchTerm && products ? products.filter(filterProducts) : products;
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading)
+        return (
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        );
     if (isError) return <div>Error: {error.message}</div>;
 
     return (

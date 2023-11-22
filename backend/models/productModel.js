@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        match: /^[0-9]{12,13}$/, // Regex to ensure only numeric characters
+        match: /^(?:\d{10}|\d{12}|\d{13})$/, // thank God for ChatGPT and regex creation ;)
     },
     available_on: {
         type: Date,

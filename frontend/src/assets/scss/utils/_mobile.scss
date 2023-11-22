@@ -1,0 +1,10 @@
+@media screen and (max-width: 900px) {
+    .header {
+        &__branding {
+            width: 40%;
+        }
+        &__navigation {
+            width: 60%;
+        }
+    }
+}

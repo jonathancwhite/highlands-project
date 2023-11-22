@@ -1,0 +1,20 @@
+.productListing {
+    min-height: 70vh;
+}
+
+.properties {
+    display: flex;
+    &__list {
+        &:before {
+            content: "(";
+        }
+        &:after {
+            content: ")";
+        }
+    }
+}
+
+.properties__list:empty::before,
+.properties__list:empty::after {
+    display: none;
+}

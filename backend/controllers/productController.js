@@ -54,8 +54,10 @@ const createProduct = asyncHandler(async (req, res) => {
  * @access PUBLIC
  */
 const getAllProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-
+    const products = await Product.find({}).populate({
+        path: "properties",
+        populate: { path: "property" },
+    });
     res.status(200).json(products);
 });
 

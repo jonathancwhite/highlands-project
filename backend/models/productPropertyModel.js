@@ -14,4 +14,9 @@ const productPropertySchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("ProductProperty", productPropertySchema);
+const ProductProperty = mongoose.model(
+    "ProductProperty",
+    productPropertySchema
+);
+
+export default ProductProperty;

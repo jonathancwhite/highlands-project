@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const PRODUCT_URL = "/api/products";
+const PRODUCT_URL = "/api/products/";
 
-export const createProduct = async (productData, token) => {
+export const createProduct = async (productData) => {
     const config = {
         headers: {},
     };
@@ -10,7 +10,7 @@ export const createProduct = async (productData, token) => {
     return response.data;
 };
 
-export const getProducts = async (token) => {
+export const getProducts = async () => {
     const config = {
         headers: {},
     };

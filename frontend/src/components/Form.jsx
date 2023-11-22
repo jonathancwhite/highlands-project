@@ -13,6 +13,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { styled } from "@mui/material/styles";
 import dayjs from "dayjs";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useCreateProductMutation } from "../slices/apiSlice.js";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -22,6 +25,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Form() {
+    const navigate = useNavigate();
+
     const currentDate = new Date();
     const minDate = currentDate;
 
@@ -40,23 +45,6 @@ export default function Form() {
     const [upcError, setUpcError] = useState("");
     const [isValid, setIsValid] = useState(false);
 
-    // const validateUPC = (upc) => {
-    //     if (!/^[0-9]{10,13}$/.test(upc)) {
-    //         setUpcError("UPC must be 10, 12, or 13 digits long.");
-    //         return false;
-    //     }
-    //     setUpcError("");
-    //     return true;
-    // };
-
-    // const validateProperty = (property) => {
-    //     if (property.name.length > 255 || property.value.length > 255) {
-    //         return "Property name and value must be no more than 255 characters.";
-    //     }
-    //     return "";
-    // };
-
-    // Update UPC validation to not directly set state
     const checkUPCValidity = (upc) => {
         return /^[0-9]{10,13}$/.test(upc);
     };
@@ -91,19 +79,24 @@ export default function Form() {
         setProperties(updatedProperties);
     }, [productName, productUPC, properties]);
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
+    const [createProduct] = useCreateProductMutation();
 
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
         let date = dayjs(availableOn).format("MM-DD-YYYY");
 
-        let formData = {
-            name: productName,
-            upc: productUPC,
-            available_on: date,
-            properties: properties,
-        };
-
-        console.log(formData);
+        try {
+            await createProduct({
+                name: productName,
+                upc: productUPC,
+                available_on: date,
+                properties,
+            }).unwrap();
+            // Handle successful submission
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.data?.message || err.error);
+        }
     };
 
     const handleAddProperty = () => {

@@ -4,13 +4,15 @@ const router = express.Router();
 import {
     createProduct,
     getAllProducts,
-} from "../controllers/productController";
+} from "../controllers/productController.js";
 
-router.post("/products", createProduct);
-router.get("/products", getAllProducts);
+router.post("/", createProduct);
+router.get("/", getAllProducts);
 
 router.get("/hello", (req, res) => {
     res.status(200).json({
         message: "Hello! This is only for test purposes",
     });
 });
+
+export default router;

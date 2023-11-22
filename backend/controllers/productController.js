@@ -1,6 +1,8 @@
 import asyncHandler from "express-async-handler";
-import Product from "../models/productModel";
+import Product from "../models/productModel.js";
 import mongoose from "mongoose";
+import Property from "../models/propertyModel.js";
+import ProductProperty from "../models/productPropertyModel.js";
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -21,18 +23,29 @@ const createProduct = asyncHandler(async (req, res) => {
         throw new Error("Please add an available date");
     }
 
-    /**
-     * TODO: handle Property & ProductProperty
-     */
-
-    // Creates product in MongoDB
     const product = await Product.create({
         name: req.body.name,
         upc: req.body.upc,
         available_on: req.body.available_on,
     });
 
-    res.status(200).json(pickup);
+    if (req.body.properties && Array.isArray(req.body.properties)) {
+        for (const prop of req.body.properties) {
+            let property = await Property.findOne({ name: prop.name });
+            if (!property) {
+                property = await Property.create({ name: prop.name });
+            }
+
+            // Create ProductProperty linking the product and property
+            await ProductProperty.create({
+                value: prop.value,
+                product: product._id,
+                property: property._id,
+            });
+        }
+    }
+
+    res.status(200).json(product);
 });
 
 /**

@@ -38,6 +38,7 @@ Below are the instructions to setup this project from downloading the repo to co
 
 -   Create a new env file inside of backend
 -   Copy .env.sample over to your new .env file
+-   Paste the MongoDB URI into your .env file (this should be in the initial email)
 -   Now we will run server.js to make sure our backend can connect to the database
     ```
     cd ..

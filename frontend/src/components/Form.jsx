@@ -49,12 +49,10 @@ export default function Form() {
         return /^[0-9]{10,13}$/.test(upc);
     };
 
-    // Update property validation to not directly set state
     const checkPropertyValidity = (property) => {
         return property.name.length <= 255 && property.value.length <= 255;
     };
 
-    // Update validation on state changes
     useEffect(() => {
         const isProductNameValid = productName.length > 0;
         const isUPCValid = checkUPCValidity(productUPC);
@@ -62,14 +60,12 @@ export default function Form() {
 
         setIsValid(isProductNameValid && isUPCValid && arePropertiesValid);
 
-        // Set UPC error state
         if (!isUPCValid) {
             setUpcError("UPC must be 10, 12, or 13 digits long.");
         } else {
             setUpcError("");
         }
 
-        // Set property error states
         const updatedProperties = properties.map((property) => ({
             ...property,
             error: checkPropertyValidity(property)
@@ -120,7 +116,7 @@ export default function Form() {
                 available_on: date,
                 properties,
             }).unwrap();
-            // need to clear form and navigate to /products
+
             clearForm();
             navigate("/products");
         } catch (err) {

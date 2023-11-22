@@ -36,7 +36,6 @@ const createProduct = asyncHandler(async (req, res) => {
                 property = await Property.create({ name: prop.name });
             }
 
-            // Create ProductProperty linking the product and property
             await ProductProperty.create({
                 value: prop.value,
                 product: product._id,

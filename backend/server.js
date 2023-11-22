@@ -24,11 +24,9 @@ app.use(
 );
 
 app.use("/api/products", productRoutes);
-// app.use("/api/users", userRoutes);
 
 const __dirname = path.resolve();
 
-// Serve frontend
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
